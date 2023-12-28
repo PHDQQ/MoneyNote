@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.duongph.moneynote.presenter.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/view_category"
+            app:destination="@id/list_category">
+<!--            <argument-->
+<!--                android:name="category"-->
+<!--                app:nullable="true"-->
+<!--                app:argType="com.example.mynotehilt.data.model.dto.CategoryDto" />-->
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.duongph.moneynote.presenter.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/edit_note"
+            app:destination="@id/edit_note_frg">
+            <argument
+                android:name="note"
+                app:nullable="true"
+                app:argType="com.duongph.moneynote.domain.model.MoneyNote" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/edit_note_frg"
+        android:name="com.duongph.moneynote.presenter.editnote.EditNoteFragment"
+        tools:layout="@layout/fragment_edit_note" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.duongph.moneynote.presenter.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+
+    <fragment
+        android:id="@+id/add_category"
+        android:name="com.duongph.moneynote.presenter.addcategory.AddCategoryFragment"
+        tools:layout="@layout/fragment_add_category" />
+
+    <fragment
+        android:id="@+id/list_category"
+        android:name="com.duongph.moneynote.presenter.listcategory.ListCategoryFragment"
+        tools:layout="@layout/fragment_list_category">
+<!--        <action-->
+<!--            android:id="@+id/action_add_category"-->
+<!--            app:destination="@id/add_category">-->
+<!--&lt;!&ndash;            <argument&ndash;&gt;-->
+<!--&lt;!&ndash;                android:name="category"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:nullable="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:argType="com.example.mynotehilt.data.model.dto.CategoryDto" />&ndash;&gt;-->
+<!--        </action>-->
+    </fragment>
+</navigation>

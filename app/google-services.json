@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "338895019008",
+    "project_id": "my-moneynote-ecf90",
+    "storage_bucket": "my-moneynote-ecf90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338895019008:android:e41e707321e3c85044cce5",
+        "android_client_info": {
+          "package_name": "com.example.mynote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338895019008-to19kp0o8cglfa783d374nqtq89qv2fc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdATeBu1tbN3yI4Og6x0YP7O_VFhjmndw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338895019008-to19kp0o8cglfa783d374nqtq89qv2fc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338895019008:android:542f66bf238709bd44cce5",
+        "android_client_info": {
+          "package_name": "com.example.mynotehilt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338895019008-to19kp0o8cglfa783d374nqtq89qv2fc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdATeBu1tbN3yI4Og6x0YP7O_VFhjmndw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338895019008-to19kp0o8cglfa783d374nqtq89qv2fc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

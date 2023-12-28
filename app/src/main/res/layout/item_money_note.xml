@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivNoteIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNoteName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:textColor="@color/color_FFEC407A"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvNoteMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_F50057"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/sbMoney"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:progress="80" />
+    </LinearLayout>
+</LinearLayout>
