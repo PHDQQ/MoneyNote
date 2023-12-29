@@ -24,7 +24,6 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
     }
 
     override fun initView() {
-
         initRcvCategory()
         binding.tvNotificationByMonth.performClick()
     }

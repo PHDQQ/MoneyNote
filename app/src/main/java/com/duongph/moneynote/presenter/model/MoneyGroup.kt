@@ -1,5 +1,6 @@
 package com.duongph.moneynote.presenter.model
 
+import com.duongph.moneynote.domain.model.Category
 import com.duongph.moneynote.domain.model.MoneyNote
 import com.duongph.moneynote.domain.model.TYPE_MONEY
 import com.duongph.moneynote.getMoney
@@ -12,14 +13,36 @@ class MoneyGroup {
     var dataList: MutableList<MoneyNote> = mutableListOf()
 }
 
+class MoneyCategoryGroup {
+    var categoryGroup: Category? = null
+    var dataList: MutableList<MoneyNote> = mutableListOf()
+}
+
 class MoneyNotePage {
     val moneyGroupList: MutableList<MoneyGroup> = mutableListOf()
+    val moneyGroupCategoryList: MutableList<MoneyCategoryGroup> = mutableListOf()
     var moneyIn = BigDecimal(0)
     var moneyOut = BigDecimal(0)
     var moneyResult = BigDecimal(0)
         get() {
-           return moneyIn.minus(moneyOut)
+            return moneyIn.minus(moneyOut)
         }
+
+    fun addNewListByCategoryNote(moneyNoteList: List<MoneyNote>) {
+
+        val groupMap = moneyNoteList.groupBy {
+            it.category?.id ?: ""
+        }
+
+        val groupCategoryList = groupMap.keys.toMutableList()
+        for (i in 0 until groupCategoryList.size) {
+            val groupCategory = groupCategoryList[i]
+            moneyGroupCategoryList.add(MoneyCategoryGroup().apply {
+                groupMap[groupCategory]?.let { dataList.addAll(it) }
+                categoryGroup = dataList.getOrNull(0)?.category
+            })
+        }
+    }
 
     fun addNewListMoneyNote(moneyNoteList: List<MoneyNote>) {
 
@@ -33,7 +56,11 @@ class MoneyNotePage {
             var groupMoney = "0"
 
             groupMap[groupTime]?.let { list ->
-                groupMoney = list.sumOf { if (it.typeMoney == TYPE_MONEY.MONEY_OUT) BigDecimal("-"+it.money) else BigDecimal(it.money)}.toString()
+                groupMoney = list.sumOf {
+                    if (it.typeMoney == TYPE_MONEY.MONEY_OUT) BigDecimal("-" + it.money) else BigDecimal(
+                        it.money
+                    )
+                }.toString()
 
                 addNewMoneyNoteListToPage(groupTime, groupMoney, list)
             }
@@ -41,9 +68,7 @@ class MoneyNotePage {
     }
 
     private fun addNewMoneyNoteListToPage(
-        groupTime: String,
-        groupMoney: String,
-        moneyNoteList: List<MoneyNote>
+        groupTime: String, groupMoney: String, moneyNoteList: List<MoneyNote>
     ) {
         val firstGroup = moneyGroupList.lastOrNull()
         if (firstGroup?.groupTime != groupTime) {
@@ -51,9 +76,7 @@ class MoneyNotePage {
             val newGroup = MoneyGroup().apply {
                 this.groupTime = groupTime
                 this.groupMoney = groupMoney.getMoney()
-                this.dataList.addAll(
-                    moneyNoteList.sortedByDescending { it.dateTimeObject!!.date }
-                )
+                this.dataList.addAll(moneyNoteList.sortedByDescending { it.dateTimeObject!!.date })
             }
 
             moneyGroupList.addLastItem(newGroup)
@@ -78,7 +101,7 @@ fun <T> MutableList<T>.addFirstItem(item: T) {
 fun <T> MutableList<T>.addLastItem(item: T) {
     if (isEmpty()) {
         add(item)
-    }else {
+    } else {
         add(size, item)
     }
 }

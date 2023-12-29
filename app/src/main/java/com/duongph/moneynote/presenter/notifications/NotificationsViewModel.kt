@@ -78,9 +78,7 @@ class NotificationsViewModel : BaseViewModel() {
             it.printStackTrace()
         }.collect {
             val page = MoneyNotePage().apply {
-                addNewListMoneyNote(it.listMoneyOut)
-                moneyIn = it.moneyIn
-                moneyOut = it.moneyOut
+                addNewListByCategoryNote(it.listMoneyOut)
             }
 
             _moneyNotePageLiveData.postValue(page)
