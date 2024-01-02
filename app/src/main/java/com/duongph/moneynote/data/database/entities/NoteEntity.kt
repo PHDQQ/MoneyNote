@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "note")
 data class NoteEntity(
-    @PrimaryKey @ColumnInfo(name = "id") var id: String? = null,
-    @ColumnInfo(name = "money") var money: String? = null,
-    @ColumnInfo(name = "date") var date: Long? = null,
-    @ColumnInfo(name = "note") var note: String? = null,
-    @ColumnInfo(name = "idCategory") var idCategory: String? = null,
+    @PrimaryKey @ColumnInfo(name = "id") var id: String,
+    @ColumnInfo(name = "money") var money: String,
+    @ColumnInfo(name = "date") var date: Long,
+    @ColumnInfo(name = "note") var note: String,
+    @ColumnInfo(name = "idCategory") var idCategory: String,
     @ColumnInfo(name = "typeMoney") var typeMoney: Int = 0
 )

@@ -15,9 +15,7 @@ class MainViewModel : BaseViewModel() {
 
     init {
         viewModelScope.launch(Dispatchers.Main) {
-            syncDataAction.invoke(BaseAction.VoidRequest()).catch {
-                it.printStackTrace()
-            }.collect()
+            syncDataAction.invoke(BaseAction.VoidRequest()).collect()
         }
     }
 }

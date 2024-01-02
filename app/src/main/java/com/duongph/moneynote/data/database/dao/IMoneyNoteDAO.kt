@@ -23,8 +23,8 @@ interface IMoneyNoteDAO {
     @Update
     suspend fun updateMoneyNote(message: NoteEntity)
 
-    @Delete
-    suspend fun updateMoneyNote(id: String)
+//    @Delete
+//    suspend fun deleteMoneyNote(id: String)
 
     @Query("SELECT * FROM 'note'")
     suspend fun getListNote(): List<NoteEntity>

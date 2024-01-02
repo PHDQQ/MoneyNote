@@ -9,7 +9,7 @@ interface ICategoryDAO {
     suspend fun insertCategory(category: CategoryEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertListCategory(category: List<CategoryEntity>): Long
+    suspend fun insertListCategory(category: List<CategoryEntity>)
 
     @Transaction
     suspend fun upsertCategory(category: CategoryEntity) {

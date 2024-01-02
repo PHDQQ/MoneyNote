@@ -6,12 +6,12 @@ import com.duongph.moneynote.domain.model.Category
 
 class CategoryToCategoryEntity : IConverter<Category, CategoryEntity> {
     override fun convert(source: Category): CategoryEntity {
-        return CategoryEntity().apply {
-            id = source.id
-            name = source.name
-            resourceIconName = source.resourceName
-            color = source.color
+        return CategoryEntity(
+            id = source.id!!,
+            name = source.name!!,
+            resourceIconName = source.resourceName ?: "category000",
+            color = source.color!!,
             typeMoney = source.typeMoney.value
-        }
+        )
     }
 }

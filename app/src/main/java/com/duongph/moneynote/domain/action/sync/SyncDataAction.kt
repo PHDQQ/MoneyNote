@@ -6,7 +6,8 @@ import com.duongph.moneynote.domain.RepoFactory
 class SyncDataAction : BaseAction<BaseAction.RequestValue, Boolean>() {
 
     override suspend fun execute(requestValue: RequestValue): Boolean {
-        RepoFactory.getCategoryRepo().getCategory()
+        RepoFactory.getCategoryRepo().syncCategory()
+        RepoFactory.getNoteRepo().syncMoneyNote()
         return true
     }
 }

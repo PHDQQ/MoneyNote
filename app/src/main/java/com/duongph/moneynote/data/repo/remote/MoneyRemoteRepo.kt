@@ -45,4 +45,12 @@ class MoneyRemoteRepo : IMoneyNoteRepo {
         database.collection(Const.NOTE).document(noteId).delete().await()
         return true
     }
+
+    override suspend fun syncMoneyNote(): Boolean {
+        return true
+    }
+
+    override suspend fun addMoneyNotes(notes: List<MoneyNote>): Boolean {
+        return true
+    }
 }

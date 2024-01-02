@@ -11,7 +11,7 @@ import com.duongph.moneynote.data.database.entities.NoteEntity
 
 
 @Database(
-    entities = [NoteEntity::class, CategoryEntity::class], version = 2, exportSchema = true
+    entities = [NoteEntity::class, CategoryEntity::class], version = 2, exportSchema = false
 )
 
 abstract class MoneyDatabase : RoomDatabase() {
@@ -24,8 +24,8 @@ abstract class MoneyDatabase : RoomDatabase() {
 
                 synchronized(MoneyDatabase::class) {
                     INSTANCE = Room.databaseBuilder(
-                        MainApplication.g().applicationContext, MoneyDatabase::class.java, "money"
-                    ).allowMainThreadQueries().build()
+                        MainApplication.g().applicationContext, MoneyDatabase::class.java, "moneyeee"
+                    ).build()
                 }
             }
 
@@ -33,7 +33,7 @@ abstract class MoneyDatabase : RoomDatabase() {
         }
 
         fun removeDatabase() {
-            MainApplication.g().applicationContext.deleteDatabase("money")
+            MainApplication.g().applicationContext.deleteDatabase("moneyeee")
             INSTANCE = null
         }
     }

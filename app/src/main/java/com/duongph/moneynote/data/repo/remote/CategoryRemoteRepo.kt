@@ -28,4 +28,8 @@ class CategoryRemoteRepo : ICategoryRepo {
     override suspend fun addCategory(listCategory: List<Category>): Boolean {
         return true
     }
+
+    override suspend fun syncCategory(): Boolean {
+        return true
+    }
 }

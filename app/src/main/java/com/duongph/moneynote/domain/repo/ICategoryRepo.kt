@@ -7,4 +7,6 @@ interface ICategoryRepo {
 
     suspend fun addCategory(listCategory: List<Category>): Boolean
 
+    suspend fun syncCategory(): Boolean
+
 }

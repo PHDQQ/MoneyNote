@@ -10,7 +10,7 @@ class MoneyRepoImpl(
     private val moneyLocalRepo: IMoneyNoteRepo
 ) : IMoneyNoteRepo {
     override suspend fun getMoneyNote(): List<MoneyNote> {
-        val list = moneyRemoteRepo.getMoneyNote()
+        val list = moneyLocalRepo.getMoneyNote()
         list.forEach {
             if (it.typeMoney == TYPE_MONEY.MONEY_IN) {
                 AppData.listNoteIn.add(it)
@@ -31,5 +31,15 @@ class MoneyRepoImpl(
 
     override suspend fun deleteMoneyNote(noteId: String): Boolean {
         return moneyRemoteRepo.deleteMoneyNote(noteId)
+    }
+
+    override suspend fun syncMoneyNote(): Boolean {
+        addMoneyNotes(moneyRemoteRepo.getMoneyNote())
+        return true
+    }
+
+    override suspend fun addMoneyNotes(notes: List<MoneyNote>): Boolean {
+        moneyLocalRepo.addMoneyNotes(notes)
+        return true
     }
 }

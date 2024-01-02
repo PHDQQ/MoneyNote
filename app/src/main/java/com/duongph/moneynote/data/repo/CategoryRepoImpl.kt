@@ -7,12 +7,15 @@ class CategoryRepoImpl(
     private val categoryLocalRepo: ICategoryRepo, private val categoryRemoteRepo: ICategoryRepo
 ) : ICategoryRepo {
     override suspend fun getCategory(): List<Category> {
-        val list = categoryRemoteRepo.getCategory()
-        addCategory(list)
         return categoryLocalRepo.getCategory()
     }
 
     override suspend fun addCategory(listCategory: List<Category>): Boolean {
         return categoryLocalRepo.addCategory(listCategory)
+    }
+
+    override suspend fun syncCategory(): Boolean {
+        addCategory(categoryRemoteRepo.getCategory())
+        return true
     }
 }

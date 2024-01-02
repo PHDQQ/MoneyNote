@@ -22,7 +22,9 @@ abstract class BaseAction<P : BaseAction.RequestValue, R> {
         requestValue: P,
     ): Flow<R> {
         return flow {
-            val response = execute(requestValue)
+            val response = withContext(Dispatchers.IO) {
+                execute(requestValue)
+            }
             this.emit(response)
         }
     }

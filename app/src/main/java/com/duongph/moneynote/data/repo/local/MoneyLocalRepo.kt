@@ -18,6 +18,15 @@ class MoneyLocalRepo : IMoneyNoteRepo {
         return true
     }
 
+    override suspend fun syncMoneyNote(): Boolean {
+        return true
+    }
+
+    override suspend fun addMoneyNotes(notes: List<MoneyNote>): Boolean {
+        MoneyDatabase.g().moneyNoteDao().insertListNote(ListConverter(MoneyNoteToNoteEntity()).convert(notes))
+        return true
+    }
+
     override suspend fun deleteMoneyNote(noteId: String): Boolean {
         return true
     }

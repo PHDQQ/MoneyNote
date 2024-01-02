@@ -15,9 +15,9 @@ class NoteEntityToMoneyNote : IConverter<NoteEntity, MoneyNote> {
             money = source.money
             dateTimeObject = DateTimeObject().apply {
                 date = source.date
-                dayString = source.date!!.getToDay()
-                monthString = source.date!!.getToDay2().getCurrentMonth()
-                yearString = source.date!!.getToDay2().getCurrentYear()
+                dayString = source.date.getToDay()
+                monthString = source.date.getToDay2().getCurrentMonth()
+                yearString = source.date.getToDay2().getCurrentYear()
             }
             typeMoney = source.typeMoney.convertEnumTypeMoney()
             category = AppData.listCategory.find { it.id == source.idCategory }
