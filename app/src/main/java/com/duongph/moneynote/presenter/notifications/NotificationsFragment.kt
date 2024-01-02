@@ -20,6 +20,11 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
             timeLiveData.observe {
                 binding.textCurrentMonth.text = it
             }
+
+            moneyNotePageLiveData.observe {
+                noteAdapter.setData(it.moneyGroupCategoryList)
+                noteAdapter.notifyDataSetChanged()
+            }
         }
     }
 
@@ -53,7 +58,7 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
 
     private fun initRcvCategory() {
         with(binding) {
-            rvNotificationCategory.adapter = noteAdapter
+            rvNotificationNote.adapter = noteAdapter
         }
     }
 
