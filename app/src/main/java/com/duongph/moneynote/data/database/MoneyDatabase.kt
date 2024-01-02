@@ -4,14 +4,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.duongph.moneynote.MainApplication
-import com.duongph.moneynote.data.database.dao.IMoneyDAO
+import com.duongph.moneynote.data.database.dao.ICategoryDAO
+import com.duongph.moneynote.data.database.dao.IMoneyNoteDAO
+import com.duongph.moneynote.data.database.entities.CategoryEntity
 import com.duongph.moneynote.data.database.entities.NoteEntity
 
 
 @Database(
-    entities = [NoteEntity::class],
-    version = 1,
-    exportSchema = false
+    entities = [NoteEntity::class, CategoryEntity::class], version = 2, exportSchema = true
 )
 
 abstract class MoneyDatabase : RoomDatabase() {
@@ -24,11 +24,8 @@ abstract class MoneyDatabase : RoomDatabase() {
 
                 synchronized(MoneyDatabase::class) {
                     INSTANCE = Room.databaseBuilder(
-                        MainApplication.g().applicationContext,
-                        MoneyDatabase::class.java,
-                        "money"
-                    )
-                        .allowMainThreadQueries().build()
+                        MainApplication.g().applicationContext, MoneyDatabase::class.java, "money"
+                    ).allowMainThreadQueries().build()
                 }
             }
 
@@ -41,5 +38,6 @@ abstract class MoneyDatabase : RoomDatabase() {
         }
     }
 
-    abstract fun ottMessageDao(): IMoneyDAO
+    abstract fun moneyNoteDao(): IMoneyNoteDAO
+    abstract fun categoryDao(): ICategoryDAO
 }

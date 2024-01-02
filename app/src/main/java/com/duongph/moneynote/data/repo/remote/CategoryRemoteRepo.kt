@@ -24,4 +24,8 @@ class CategoryRemoteRepo : ICategoryRepo {
         AppData.listCategory.addAll(ListConverter(CategoryResponseToCategory()).convert(listCate))
         return AppData.listCategory
     }
+
+    override suspend fun addCategory(listCategory: List<Category>): Boolean {
+        return true
+    }
 }

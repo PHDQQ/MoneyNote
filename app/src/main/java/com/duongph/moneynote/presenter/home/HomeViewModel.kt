@@ -16,7 +16,7 @@ import com.duongph.moneynote.toJson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
-import java.util.Calendar
+import java.util.*
 
 class HomeViewModel : BaseViewModel() {
     private val categoryAction = GetCategoryAction()
@@ -42,7 +42,7 @@ class HomeViewModel : BaseViewModel() {
 
     init {
         _dateLiveData.postValue("${calendar.time.getToDay()} (${calendar.getNameDayOfWeek()})")
-        getCategory()
+//        getCategory()
     }
 
     fun getAllNote() {
