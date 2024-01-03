@@ -2,9 +2,9 @@ package com.duongph.moneynote.presenter.addcategory
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.duongph.moneynote.presenter.base.BaseFragment
 import com.duongph.moneynote.presenter.base.BaseViewModel
 import com.example.mynotehilt.databinding.FragmentAddCategoryBinding
-import com.example.mynotehilt.ui.base.BaseFragment
 
 class AddCategoryFragment : BaseFragment<FragmentAddCategoryBinding>() {
     private val viewModel: AddCategoryViewModel by viewModels()

@@ -1,5 +1,6 @@
 package com.duongph.moneynote.presenter
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -18,10 +19,20 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    private val loadingDialog: ProgressDialog by lazy {
+        ProgressDialog(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.apply {
-
+            uiState.observe(this@MainActivity) {
+                if (it) {
+                    showLoading()
+                } else {
+                    hideLoading()
+                }
+            }
         }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -46,5 +57,13 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         findNavController(R.id.nav_host_fragment_activity_main).popBackStack()
 //        super.onBackPressed()
+    }
+
+    fun showLoading() {
+        loadingDialog.show()
+    }
+
+    fun hideLoading() {
+        loadingDialog.dismiss()
     }
 }

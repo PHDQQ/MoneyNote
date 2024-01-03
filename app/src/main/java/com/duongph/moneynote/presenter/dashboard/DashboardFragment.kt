@@ -1,7 +1,6 @@
 package com.duongph.moneynote.presenter.dashboard
 
 import android.app.AlertDialog
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -10,14 +9,13 @@ import com.duongph.moneynote.domain.model.MoneyNote
 import com.duongph.moneynote.getMoney
 import com.duongph.moneynote.gone
 import com.duongph.moneynote.presenter.adapter.NoteGroupData
+import com.duongph.moneynote.presenter.base.BaseFragment
 import com.duongph.moneynote.presenter.base.BaseViewModel
 import com.duongph.moneynote.presenter.base.groupdata.GroupAdapter
 import com.duongph.moneynote.presenter.model.MoneyNotePage
 import com.duongph.moneynote.show
-import com.duongph.moneynote.toJson
 import com.example.mynotehilt.R
 import com.example.mynotehilt.databinding.FragmentDashboardBinding
-import com.example.mynotehilt.ui.base.BaseFragment
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     private val viewModel: DashboardViewModel by viewModels()

@@ -1,9 +1,9 @@
 package com.duongph.moneynote.presenter.base
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 
 
@@ -12,8 +12,8 @@ abstract class BaseViewModel : ViewModel() {
 //    abstract fun createInitialState(): State
 //    abstract fun onTriggerEvent(event: Event)
 //
-    protected var _uiState: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    var uiState: StateFlow<Boolean> = _uiState
+    protected var _uiState: MutableLiveData<Boolean> = MutableLiveData(false)
+    var uiState: LiveData<Boolean> = _uiState
     protected suspend fun <T> call(
         callFlow: Flow<T>,
         completionHandler: (collect: T) -> Unit = {}
@@ -26,10 +26,10 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     fun showLoading() {
-        _uiState.value = true
+        _uiState.postValue(true)
     }
 
     fun hideLoading() {
-        _uiState.value = false
+        _uiState.postValue(false)
     }
 }
