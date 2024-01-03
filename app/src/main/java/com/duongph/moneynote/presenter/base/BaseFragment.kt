@@ -1,5 +1,6 @@
-package com.example.mynotehilt.ui.base
+package com.duongph.moneynote.presenter.base
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.asLiveData
 import androidx.viewbinding.ViewBinding
 import com.duongph.moneynote.BindingReflex
-import com.duongph.moneynote.presenter.base.BaseViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
@@ -20,9 +19,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     private var _binding: VB? = null
     protected val binding get() = _binding!!
 
-//    private val loadingDialog: LoadingProgressDialog by lazy {
-//        LoadingProgressDialog(context)
-//    }
+    private val loadingDialog: ProgressDialog by lazy {
+        ProgressDialog(context)
+    }
 
     @Inject
     protected lateinit var db: FirebaseFirestore
@@ -42,7 +41,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         initObserve()
         initListener()
         initView()
-        getViewModel().uiState.asLiveData().observe {
+        getViewModel().uiState.observe {
             if (it) {
                 showLoading()
             } else {
@@ -71,11 +70,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     }
 
     fun showLoading() {
-//        loadingDialog.show()
+        loadingDialog.show()
     }
 
     fun hideLoading() {
-//        loadingDialog.dismiss()
+        loadingDialog.dismiss()
     }
 
 }

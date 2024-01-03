@@ -4,9 +4,9 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.duongph.moneynote.domain.model.ChooseTimeMode
 import com.duongph.moneynote.presenter.adapter.NoteMoneyAdapter
+import com.duongph.moneynote.presenter.base.BaseFragment
 import com.duongph.moneynote.presenter.base.BaseViewModel
 import com.example.mynotehilt.databinding.FragmentNotificationsBinding
-import com.example.mynotehilt.ui.base.BaseFragment
 
 class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
     private val viewModel: NotificationsViewModel by viewModels()
@@ -22,7 +22,7 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
             }
 
             moneyNotePageLiveData.observe {
-                noteAdapter.setData(it.moneyGroupCategoryList)
+//                noteAdapter.setData(it.moneyGroupCategoryList.)
                 noteAdapter.notifyDataSetChanged()
             }
         }

@@ -4,9 +4,9 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.duongph.moneynote.presenter.base.BaseFragment
 import com.duongph.moneynote.presenter.base.BaseViewModel
 import com.example.mynotehilt.databinding.FragmentListCategoryBinding
-import com.example.mynotehilt.ui.base.BaseFragment
 
 
 class ListCategoryFragment : BaseFragment<FragmentListCategoryBinding>() {

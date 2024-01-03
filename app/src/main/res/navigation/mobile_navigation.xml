@@ -17,7 +17,7 @@
 <!--            <argument-->
 <!--                android:name="category"-->
 <!--                app:nullable="true"-->
-<!--                app:argType="com.example.mynotehilt.data.model.dto.CategoryDto" />-->
+<!--                app:argType="com.duongph.moneynote.domain.model.Category" />-->
         </action>
     </fragment>
 
@@ -57,13 +57,13 @@
         android:id="@+id/list_category"
         android:name="com.duongph.moneynote.presenter.listcategory.ListCategoryFragment"
         tools:layout="@layout/fragment_list_category">
-<!--        <action-->
-<!--            android:id="@+id/action_add_category"-->
-<!--            app:destination="@id/add_category">-->
-<!--&lt;!&ndash;            <argument&ndash;&gt;-->
-<!--&lt;!&ndash;                android:name="category"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:nullable="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:argType="com.example.mynotehilt.data.model.dto.CategoryDto" />&ndash;&gt;-->
-<!--        </action>-->
+        <action
+            android:id="@+id/action_add_category"
+            app:destination="@id/add_category">
+            <!--            <argument-->
+            <!--                android:name="category"-->
+            <!--                app:nullable="true"-->
+            <!--                app:argType="com.example.mynotehilt.data.model.dto.CategoryDto" />-->
+        </action>
     </fragment>
 </navigation>

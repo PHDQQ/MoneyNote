@@ -13,7 +13,6 @@ import com.duongph.moneynote.data.database.entities.NoteEntity
 @Database(
     entities = [NoteEntity::class, CategoryEntity::class], version = 2, exportSchema = false
 )
-
 abstract class MoneyDatabase : RoomDatabase() {
 
     companion object {

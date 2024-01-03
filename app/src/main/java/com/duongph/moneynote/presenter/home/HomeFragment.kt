@@ -4,14 +4,15 @@ import android.app.DatePickerDialog
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.duongph.moneynote.domain.model.DateTimeObject
 import com.duongph.moneynote.domain.model.MoneyNote
 import com.duongph.moneynote.getMoneyClearText
 import com.duongph.moneynote.presenter.adapter.CategoryAdapter
+import com.duongph.moneynote.presenter.base.BaseFragment
 import com.duongph.moneynote.presenter.base.BaseViewModel
 import com.example.mynotehilt.databinding.FragmentHomeBinding
-import com.example.mynotehilt.ui.base.BaseFragment
-import java.util.Calendar
+import java.util.*
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val viewModel: HomeViewModel by viewModels()
@@ -121,7 +122,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             }
             categoryAdapter.onAddItemClick = {
-
+                findNavController().navigate(HomeFragmentDirections.viewCategory())
             }
             rvHomeCategory.adapter = categoryAdapter
         }
