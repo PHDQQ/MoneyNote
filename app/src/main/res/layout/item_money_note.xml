@@ -37,10 +37,13 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
-        <SeekBar
+        <ProgressBar
             android:id="@+id/sbMoney"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="5dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="4dp"
+            style="@style/CustomProgressBar"
             android:progress="80" />
     </LinearLayout>
 </LinearLayout>

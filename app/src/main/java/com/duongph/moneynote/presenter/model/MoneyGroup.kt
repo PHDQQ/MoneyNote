@@ -6,6 +6,7 @@ import com.duongph.moneynote.domain.model.TYPE_MONEY
 import com.duongph.moneynote.getMoney
 import com.duongph.moneynote.getToDay2
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 class MoneyGroup {
     var groupTime: String = ""
@@ -15,6 +16,7 @@ class MoneyGroup {
 
 class MoneyCategoryGroup {
     var categoryGroup: Category? = null
+    var progressMoney: Int = 0
     var dataList: MutableList<MoneyNote> = mutableListOf()
 }
 
@@ -23,22 +25,24 @@ class MoneyNotePage {
     val moneyGroupCategoryList: MutableList<MoneyCategoryGroup> = mutableListOf()
     var moneyIn = BigDecimal(0)
     var moneyOut = BigDecimal(0)
-    var moneyResult = BigDecimal(0)
+    val moneyResult: BigDecimal
         get() {
             return moneyIn.minus(moneyOut)
         }
 
     fun addNewListByCategoryNote(moneyNoteList: List<MoneyNote>) {
 
-        val groupMap = moneyNoteList.groupBy {
+        val groupMap = moneyNoteList.filter { it.typeMoney == TYPE_MONEY.MONEY_OUT }.groupBy {
             it.category?.id ?: ""
         }
+        val sum = moneyNoteList.filter{ it.typeMoney == TYPE_MONEY.MONEY_OUT }.sumOf { BigDecimal(it.money) }
 
         val groupCategoryList = groupMap.keys.toMutableList()
         for (i in 0 until groupCategoryList.size) {
             val groupCategory = groupCategoryList[i]
             moneyGroupCategoryList.add(MoneyCategoryGroup().apply {
                 groupMap[groupCategory]?.let { dataList.addAll(it) }
+                progressMoney = sum.divide(dataList.sumOf { BigDecimal(it.money) }, 2, RoundingMode.HALF_UP).toInt()
                 categoryGroup = dataList.getOrNull(0)?.category
             })
         }

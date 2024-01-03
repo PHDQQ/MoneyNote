@@ -5,6 +5,7 @@ import android.view.View
 import com.duongph.moneynote.domain.model.MoneyNote
 import com.duongph.moneynote.getResourceId
 import com.duongph.moneynote.presenter.base.adapter.BaseRcvVH
+import com.duongph.moneynote.presenter.model.MoneyCategoryGroup
 import com.example.mynotehilt.R
 import com.example.mynotehilt.databinding.ItemMoneyNoteBinding
 import com.example.mynotehilt.ui.base.adapter.BaseRcvAdapter
@@ -12,11 +13,12 @@ import com.example.mynotehilt.ui.base.adapter.BaseVHData
 
 class NoteMoneyAdapter : BaseRcvAdapter() {
 
-    fun setData(newItems: List<MoneyNote>) {
+    fun setData(newItems: List<MoneyCategoryGroup>) {
         newItems.forEach {
             mDataSet.add(MoneyNoteVHData(it).apply {
-                iconId = it.category!!.resourceName!!.getResourceId()
-                colorIconFilter = it.category!!.color ?: ""
+                iconId = it.categoryGroup!!.resourceName!!.getResourceId()
+                colorIconFilter = it.categoryGroup!!.color ?: ""
+                seekBarProgress = it.progressMoney
             })
         }
     }
@@ -39,12 +41,13 @@ class NoteMoneyAdapter : BaseRcvAdapter() {
                 ivNoteIcon.setImageResource(data.iconId)
                 ivNoteIcon.setColorFilter(Color.parseColor(data.colorIconFilter))
                 sbMoney.progress = data.seekBarProgress
+                tvNoteName.text = data.realData?.categoryGroup?.name
             }
         }
 
     }
 
-    class MoneyNoteVHData(data: MoneyNote) : BaseVHData<MoneyNote>(data) {
+    class MoneyNoteVHData(data: MoneyCategoryGroup) : BaseVHData<MoneyCategoryGroup>(data) {
         var iconId = 0
         var colorIconFilter = ""
         var seekBarProgress = 20

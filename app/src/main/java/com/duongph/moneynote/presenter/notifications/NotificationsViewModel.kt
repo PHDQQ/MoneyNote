@@ -71,7 +71,7 @@ class NotificationsViewModel : BaseViewModel() {
         updateData()
     }
 
-    private fun updateData() = viewModelScope.launch(Dispatchers.IO) {
+    private fun updateData() = viewModelScope.launch(Dispatchers.Main) {
         getNoteInfoAction.invoke(GetNoteInfoAction.GetNoteInfoRV().apply {
             month = _timeLiveData.value!!
         }).catch {
