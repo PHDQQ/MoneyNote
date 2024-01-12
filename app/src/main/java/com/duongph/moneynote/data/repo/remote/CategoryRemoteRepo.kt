@@ -26,6 +26,11 @@ class CategoryRemoteRepo : ICategoryRepo {
     }
 
     override suspend fun addCategory(listCategory: List<Category>): Boolean {
+        listCategory.forEach {
+            val id =  FirebaseModule.provideFireStoreInstance().collection(Const.CATEGORY).add(it).await().id
+            it.id = id
+            FirebaseModule.provideFireStoreInstance().collection(Const.CATEGORY).document(id).set(it)
+        }
         return true
     }
 

@@ -30,10 +30,10 @@ class DashboardViewModel : BaseViewModel() {
     private var calendar = Calendar.getInstance()
 
     init {
-        updateData()
+//        updateData()
     }
 
-    private fun updateData() = viewModelScope.launch(Dispatchers.IO) {
+    fun updateData() = viewModelScope.launch(Dispatchers.IO) {
         getNoteInfoAction.invoke(GetNoteInfoAction.GetNoteInfoRV().apply {
             month = _monthLiveData.value!!
         }).catch {

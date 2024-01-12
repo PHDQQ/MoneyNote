@@ -2,6 +2,7 @@ package com.duongph.moneynote.common
 
 import android.content.Context
 import android.content.res.Resources
+import com.duongph.moneynote.MainApplication
 
 
 class Const {
@@ -73,29 +74,30 @@ class Const {
             "#F98BBE"
         )
 
-//        fun getCategoryImages(resource: ResourcesProvider): List<Int> {
-//            val arrayList = ArrayList<Int>()
-//            for (i in 0..140) {
-//                arrayList.add(getResourceId(resource, i))
-//            }
-//            return arrayList
-//        }
-//
-//        private fun getResourceId(context: Context, i: Int): Int {
-//            val resources: Resources = context.resources
-//            return resources.getIdentifier(
-//                "category" + String.format("%03d", Integer.valueOf(i)),
-//                "mipmap",
-//                context.packageName
-//            )
-//        }
-//
-//        private fun getResourceId(resource: ResourcesProvider, i: Int): Int {
-//            return resource.getIdentifier(
-//                "category" + String.format("%03d", Integer.valueOf(i)),
-//                "mipmap"
-//            )
-//        }
+        fun getCategoryImages(): List<Int> {
+            val arrayList = ArrayList<Int>()
+            for (i in 0..140) {
+                arrayList.add(getResourceId(i))
+            }
+            return arrayList
+        }
+
+        private fun getResourceId(context: Context, i: Int): Int {
+            val resources: Resources = context.resources
+            return resources.getIdentifier(
+                "category" + String.format("%03d", Integer.valueOf(i)),
+                "mipmap",
+                context.packageName
+            )
+        }
+
+        private fun getResourceId(i: Int): Int {
+            val context: Context = MainApplication.g().applicationContext
+            return context.resources.getIdentifier(
+                "category" + String.format("%03d", Integer.valueOf(i)),
+                "mipmap", context.packageName
+            )
+        }
 
     }
 

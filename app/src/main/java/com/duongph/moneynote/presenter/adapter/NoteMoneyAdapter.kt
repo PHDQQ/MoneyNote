@@ -14,6 +14,7 @@ import com.example.mynotehilt.ui.base.adapter.BaseVHData
 class NoteMoneyAdapter : BaseRcvAdapter() {
 
     fun setData(newItems: List<MoneyCategoryGroup>) {
+        mDataSet.clear()
         newItems.forEach {
             mDataSet.add(MoneyNoteVHData(it).apply {
                 iconId = it.categoryGroup!!.resourceName!!.getResourceId()
@@ -40,8 +41,9 @@ class NoteMoneyAdapter : BaseRcvAdapter() {
             with(binding) {
                 ivNoteIcon.setImageResource(data.iconId)
                 ivNoteIcon.setColorFilter(Color.parseColor(data.colorIconFilter))
-                sbMoney.progress = data.seekBarProgress
+                sbMoney.progress = data.seekBarProgress.toInt()
                 tvNoteName.text = data.realData?.categoryGroup?.name
+                tvNoteMoneyProgress.text = "${data.seekBarProgress}%"
             }
         }
 
@@ -50,6 +52,6 @@ class NoteMoneyAdapter : BaseRcvAdapter() {
     class MoneyNoteVHData(data: MoneyCategoryGroup) : BaseVHData<MoneyCategoryGroup>(data) {
         var iconId = 0
         var colorIconFilter = ""
-        var seekBarProgress = 20
+        var seekBarProgress = 20f
     }
 }

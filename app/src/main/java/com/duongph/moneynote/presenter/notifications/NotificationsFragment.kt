@@ -22,7 +22,7 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding>() {
             }
 
             moneyNotePageLiveData.observe {
-//                noteAdapter.setData(it.moneyGroupCategoryList.)
+                noteAdapter.setData(it.moneyGroupCategoryList)
                 noteAdapter.notifyDataSetChanged()
             }
         }

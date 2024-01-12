@@ -42,6 +42,11 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.updateData()
+    }
+
     override fun initView() {
         with(binding) {
             val simpleItemTouchHelper = object :

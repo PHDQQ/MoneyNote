@@ -1,5 +1,6 @@
 package com.duongph.moneynote.presenter.model
 
+import android.util.Log
 import com.duongph.moneynote.domain.model.Category
 import com.duongph.moneynote.domain.model.MoneyNote
 import com.duongph.moneynote.domain.model.TYPE_MONEY
@@ -16,7 +17,7 @@ class MoneyGroup {
 
 class MoneyCategoryGroup {
     var categoryGroup: Category? = null
-    var progressMoney: Int = 0
+    var progressMoney: Float = 0F
     var dataList: MutableList<MoneyNote> = mutableListOf()
 }
 
@@ -36,13 +37,13 @@ class MoneyNotePage {
             it.category?.id ?: ""
         }
         val sum = moneyNoteList.filter{ it.typeMoney == TYPE_MONEY.MONEY_OUT }.sumOf { BigDecimal(it.money) }
-
         val groupCategoryList = groupMap.keys.toMutableList()
         for (i in 0 until groupCategoryList.size) {
             val groupCategory = groupCategoryList[i]
             moneyGroupCategoryList.add(MoneyCategoryGroup().apply {
                 groupMap[groupCategory]?.let { dataList.addAll(it) }
-                progressMoney = sum.divide(dataList.sumOf { BigDecimal(it.money) }, 2, RoundingMode.HALF_UP).toInt()
+                val a = dataList.sumOf { BigDecimal(it.money) }
+                progressMoney = a.divide(sum, 2, RoundingMode.HALF_UP).multiply(BigDecimal(100)).toFloat()
                 categoryGroup = dataList.getOrNull(0)?.category
             })
         }

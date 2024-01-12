@@ -11,11 +11,11 @@ class CategoryRepoImpl(
     }
 
     override suspend fun addCategory(listCategory: List<Category>): Boolean {
-        return categoryLocalRepo.addCategory(listCategory)
+        return categoryRemoteRepo.addCategory(listCategory)
     }
 
     override suspend fun syncCategory(): Boolean {
-        addCategory(categoryRemoteRepo.getCategory())
+        categoryLocalRepo.addCategory(categoryRemoteRepo.getCategory())
         return true
     }
 }

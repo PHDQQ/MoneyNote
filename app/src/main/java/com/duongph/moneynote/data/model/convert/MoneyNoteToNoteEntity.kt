@@ -11,7 +11,7 @@ class MoneyNoteToNoteEntity : IConverter<MoneyNote, NoteEntity> {
             note = source.note ?: "",
             money = source.money!!,
             date = source.dateTimeObject!!.date ?: 0,
-            idCategory = source.category!!.id!!,
+            idCategory = source.category?.id ?: "",
             typeMoney = source.typeMoney.value
         )
     }
