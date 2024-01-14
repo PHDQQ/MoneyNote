@@ -39,8 +39,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             moneyLiveData.observe {
                 viewModel.getCategory()
             }
-            addNoteState.observe { isSuccess ->
-                if (isSuccess) {
+            addNoteState.observe { event ->
+                if (event.getContentIfNotHandled() == true) {
                     Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show()
                 }
             }

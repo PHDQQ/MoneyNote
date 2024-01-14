@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.duongph.moneynote.common.Event
 import com.duongph.moneynote.domain.action.category.GetCategoryAction
 import com.duongph.moneynote.domain.action.note.AddNoteAction
 import com.duongph.moneynote.domain.model.Category
@@ -30,8 +31,8 @@ class HomeViewModel : BaseViewModel() {
     private val _moneyLiveData = MutableLiveData(true)
     var moneyLiveData: MutableLiveData<Boolean> = _moneyLiveData
 
-    private val _addNoteState = MutableLiveData<Boolean>()
-    var addNoteState: LiveData<Boolean> = _addNoteState
+    private val _addNoteState = MutableLiveData<Event<Boolean>>()
+    var addNoteState: LiveData<Event<Boolean>> = _addNoteState
 
     private val _categoryLiveData = MutableLiveData<List<Category>>()
     var categoryLiveData: LiveData<List<Category>> = _categoryLiveData
@@ -82,7 +83,7 @@ class HomeViewModel : BaseViewModel() {
         }).catch {
             it.printStackTrace()
         }.collect {
-            _addNoteState.postValue(it)
+            _addNoteState.postValue(Event(it))
         }
     }
 

@@ -12,6 +12,9 @@ interface IMoneyNoteDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertListNote(noteList: List<NoteEntity>)
 
+    @Query("Delete FROM 'note' where id =:id")
+    suspend fun deleteNote(id: String)
+
     @Transaction
     suspend fun upsertMoneyNote(note: NoteEntity) {
         val id = insertNote(note)

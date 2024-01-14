@@ -1,6 +1,9 @@
 package com.duongph.moneynote.data.repo
 
+import android.util.Log
 import com.duongph.moneynote.AppData
+import com.duongph.moneynote.data.model.NoteResponse
+import com.duongph.moneynote.data.model.convert.NoteResponseToMoneyNote
 import com.duongph.moneynote.domain.model.MoneyNote
 import com.duongph.moneynote.domain.model.TYPE_MONEY
 import com.duongph.moneynote.domain.repo.IMoneyNoteRepo
@@ -21,8 +24,11 @@ class MoneyRepoImpl(
         return list
     }
 
-    override suspend fun addMoneyNote(note: MoneyNote): Boolean {
-        return moneyRemoteRepo.addMoneyNote(note)
+    override suspend fun addMoneyNote(note: MoneyNote): NoteResponse {
+        val money = moneyRemoteRepo.addMoneyNote(note)
+        moneyLocalRepo.addMoneyNote(NoteResponseToMoneyNote().convert(money))
+        Log.d("duongph", "addMoneyNote done: ")
+        return NoteResponse()
     }
 
     override suspend fun updateMoneyNote(note: MoneyNote): Boolean {
@@ -30,7 +36,9 @@ class MoneyRepoImpl(
     }
 
     override suspend fun deleteMoneyNote(noteId: String): Boolean {
-        return moneyRemoteRepo.deleteMoneyNote(noteId)
+        moneyRemoteRepo.deleteMoneyNote(noteId)
+        moneyLocalRepo.deleteMoneyNote(noteId)
+        return true
     }
 
     override suspend fun syncMoneyNote(): Boolean {

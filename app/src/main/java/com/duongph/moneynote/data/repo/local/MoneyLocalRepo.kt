@@ -2,6 +2,7 @@ package com.duongph.moneynote.data.repo.local
 
 import com.duongph.moneynote.data.converter.ListConverter
 import com.duongph.moneynote.data.database.MoneyDatabase
+import com.duongph.moneynote.data.model.NoteResponse
 import com.duongph.moneynote.data.model.convert.MoneyNoteToNoteEntity
 import com.duongph.moneynote.data.model.convert.NoteEntityToMoneyNote
 import com.duongph.moneynote.domain.model.MoneyNote
@@ -13,9 +14,9 @@ class MoneyLocalRepo : IMoneyNoteRepo {
         return ListConverter(NoteEntityToMoneyNote()).convert(list)
     }
 
-    override suspend fun addMoneyNote(note: MoneyNote): Boolean {
+    override suspend fun addMoneyNote(note: MoneyNote): NoteResponse {
         MoneyDatabase.g().moneyNoteDao().insertNote(MoneyNoteToNoteEntity().convert(note))
-        return true
+        return NoteResponse()
     }
 
     override suspend fun syncMoneyNote(): Boolean {
@@ -28,6 +29,7 @@ class MoneyLocalRepo : IMoneyNoteRepo {
     }
 
     override suspend fun deleteMoneyNote(noteId: String): Boolean {
+        MoneyDatabase.g().moneyNoteDao().deleteNote(noteId)
         return true
     }
 

@@ -1,5 +1,6 @@
 package com.duongph.moneynote.data.repo.remote
 
+import android.util.Log
 import com.duongph.moneynote.common.Const
 import com.duongph.moneynote.data.FirebaseModule
 import com.duongph.moneynote.data.converter.ListConverter
@@ -22,6 +23,7 @@ class MoneyRemoteRepo : IMoneyNoteRepo {
                 id = it.id
             })
         }
+        Log.d("duongph", "getMoneyNote: "+list.size)
         return ListConverter(NoteResponseToMoneyNote()).convert(list)
     }
 
@@ -32,12 +34,12 @@ class MoneyRemoteRepo : IMoneyNoteRepo {
         return true
     }
 
-    override suspend fun addMoneyNote(note: MoneyNote): Boolean {
+    override suspend fun addMoneyNote(note: MoneyNote): NoteResponse {
         val noteAdd = MoneyNoteToNoteResponse().convert(note)
         val id = database.collection(Const.NOTE).add(noteAdd).await().id
         noteAdd.id = id
         database.collection(Const.NOTE).document(id).set(noteAdd, SetOptions.merge())
-        return true
+        return noteAdd
 
     }
 

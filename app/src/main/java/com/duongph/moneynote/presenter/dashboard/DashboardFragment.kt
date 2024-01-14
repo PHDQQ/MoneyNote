@@ -61,8 +61,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
-//                    Log.d("duongph", "getItemDataAtAdapterPosition: "+ adapter.getItemDataAtAdapterPosition(position).toJson())
-//                    Log.d("duongph", "getPositionInGroup: "+ adapter.getPositionInGroup(position))
                     AlertDialog.Builder(context!!)
                         .setTitle("Xoá")
                         .setMessage("Bạn có chắc chắn muốn xoá note ko?")
