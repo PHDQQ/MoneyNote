@@ -1,6 +1,9 @@
 package com.duongph.moneynote.presenter.dashboard
 
 import android.app.AlertDialog
+import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -40,11 +43,16 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
                 binding.textCurrentMonth.text = it
             }
         }
+
+        parentFragmentManager.setFragmentResultListener("update", this
+        ) { requestKey, result ->
+            viewModel.updateData()
+            Log.d("duongph", "update: done ")
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.updateData()
     }
 
     override fun initView() {

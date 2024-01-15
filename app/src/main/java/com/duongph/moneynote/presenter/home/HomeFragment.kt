@@ -1,6 +1,7 @@
 package com.duongph.moneynote.presenter.home
 
 import android.app.DatePickerDialog
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -41,6 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
             addNoteState.observe { event ->
                 if (event.getContentIfNotHandled() == true) {
+                    parentFragmentManager.setFragmentResult("update", Bundle())
                     Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show()
                 }
             }

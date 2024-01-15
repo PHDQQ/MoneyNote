@@ -21,6 +21,7 @@ import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
+val simpleFormatter2 = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
 val simpleFormatter = SimpleDateFormat("dd/MM/yyyy")
 val monthFormatter = SimpleDateFormat("MM/yyyy")
 val yearFormatter = SimpleDateFormat("yyyy")
@@ -56,6 +57,10 @@ fun Date.getToDay(): String {
 
 fun Long.getToDay(): String {
     return simpleFormatter.format(Date(this))
+}
+
+fun Long.getToDay3(): String {
+    return simpleFormatter2.format(Date(this))
 }
 
 fun Long.getToDay2(): String {

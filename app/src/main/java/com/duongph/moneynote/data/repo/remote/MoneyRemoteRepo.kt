@@ -27,6 +27,10 @@ class MoneyRemoteRepo : IMoneyNoteRepo {
         return ListConverter(NoteResponseToMoneyNote()).convert(list)
     }
 
+    override suspend fun getMoneyNoteByTime(time1: Long, time2: Long): List<MoneyNote> {
+        return emptyList()
+    }
+
     override suspend fun updateMoneyNote(note: MoneyNote): Boolean {
         val noteUpdate = MoneyNoteToNoteResponse().convert(note)
         database.collection(Const.NOTE).document(noteUpdate.id ?: "")

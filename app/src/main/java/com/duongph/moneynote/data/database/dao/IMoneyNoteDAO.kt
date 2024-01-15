@@ -31,4 +31,7 @@ interface IMoneyNoteDAO {
 
     @Query("SELECT * FROM 'note'")
     suspend fun getListNote(): List<NoteEntity>
+
+    @Query("SELECT * FROM 'note' where date >=:time1 AND date<= :time2")
+    suspend fun getListNoteByTime(time1: Long, time2: Long): List<NoteEntity>
 }

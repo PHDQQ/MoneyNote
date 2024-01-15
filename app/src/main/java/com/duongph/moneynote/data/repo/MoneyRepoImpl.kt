@@ -41,6 +41,10 @@ class MoneyRepoImpl(
         return true
     }
 
+    override suspend fun getMoneyNoteByTime(time1: Long, time2: Long): List<MoneyNote> {
+        return moneyLocalRepo.getMoneyNoteByTime(time1, time2)
+    }
+
     override suspend fun syncMoneyNote(): Boolean {
         addMoneyNotes(moneyRemoteRepo.getMoneyNote())
         return true

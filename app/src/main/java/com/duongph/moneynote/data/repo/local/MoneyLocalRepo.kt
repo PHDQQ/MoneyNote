@@ -33,6 +33,11 @@ class MoneyLocalRepo : IMoneyNoteRepo {
         return true
     }
 
+    override suspend fun getMoneyNoteByTime(time1: Long, time2: Long): List<MoneyNote> {
+        val list = MoneyDatabase.g().moneyNoteDao().getListNoteByTime(time1, time2)
+        return ListConverter(NoteEntityToMoneyNote()).convert(list)
+    }
+
     override suspend fun updateMoneyNote(note: MoneyNote): Boolean {
         return true
     }
