@@ -24,7 +24,8 @@ class MoneyLocalRepo : IMoneyNoteRepo {
     }
 
     override suspend fun addMoneyNotes(notes: List<MoneyNote>): Boolean {
-        MoneyDatabase.g().moneyNoteDao().insertListNote(ListConverter(MoneyNoteToNoteEntity()).convert(notes))
+        MoneyDatabase.g().moneyNoteDao()
+            .insertListNote(ListConverter(MoneyNoteToNoteEntity()).convert(notes))
         return true
     }
 
@@ -39,6 +40,7 @@ class MoneyLocalRepo : IMoneyNoteRepo {
     }
 
     override suspend fun updateMoneyNote(note: MoneyNote): Boolean {
+        MoneyDatabase.g().moneyNoteDao().updateMoneyNote(MoneyNoteToNoteEntity().convert(note))
         return true
     }
 }

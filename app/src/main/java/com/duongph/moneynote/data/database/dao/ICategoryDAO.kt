@@ -2,6 +2,7 @@ package com.duongph.moneynote.data.database.dao
 
 import androidx.room.*
 import com.duongph.moneynote.data.database.entities.CategoryEntity
+import com.duongph.moneynote.data.database.entities.CategoryWithNoteEntity
 
 @Dao
 interface ICategoryDAO {
@@ -24,4 +25,9 @@ interface ICategoryDAO {
 
     @Query("SELECT * FROM `category`")
     suspend fun getListCategory(): List<CategoryEntity>
+
+    //    @Query("SELECT * FROM `note` INNER JOIN `category` ON note.idCategory = category.id where note.date >=:time1 AND note.date<= :time2")
+    @Transaction
+    @Query("SELECT * FROM `category` where note.date >= :time1 AND note.date<= :time2")
+    suspend fun getListCategoryWithNote(time1: Long, time2: Long): List<CategoryWithNoteEntity>
 }

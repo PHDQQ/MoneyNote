@@ -7,6 +7,7 @@ import com.duongph.moneynote.data.converter.ListConverter
 import com.duongph.moneynote.data.model.CategoryResponse
 import com.duongph.moneynote.data.model.convert.CategoryResponseToCategory
 import com.duongph.moneynote.domain.model.Category
+import com.duongph.moneynote.domain.model.CategoryWithNote
 import com.duongph.moneynote.domain.repo.ICategoryRepo
 import kotlinx.coroutines.tasks.await
 
@@ -23,6 +24,10 @@ class CategoryRemoteRepo : ICategoryRepo {
         AppData.listCategory.clear()
         AppData.listCategory.addAll(ListConverter(CategoryResponseToCategory()).convert(listCate))
         return AppData.listCategory
+    }
+
+    override suspend fun getCategoryWithNote(time1: Long, time2: Long): List<CategoryWithNote> {
+        return emptyList()
     }
 
     override suspend fun addCategory(listCategory: List<Category>): Boolean {

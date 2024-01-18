@@ -2,6 +2,7 @@ package com.duongph.moneynote.presenter.home
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -12,10 +13,14 @@ import com.duongph.moneynote.getMoneyClearText
 import com.duongph.moneynote.presenter.adapter.CategoryAdapter
 import com.duongph.moneynote.presenter.base.BaseFragment
 import com.duongph.moneynote.presenter.base.BaseViewModel
+import com.duongph.moneynote.presenter.dashboard.DashboardFragment
 import com.example.mynotehilt.databinding.FragmentHomeBinding
 import java.util.*
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+    companion object {
+        const val FRG_KEY_UPDATE_CATEGORY = "FRG_KEY_UPDATE_CATEGORY"
+    }
     private val viewModel: HomeViewModel by viewModels()
 
     private val categoryAdapter = CategoryAdapter()
@@ -42,7 +47,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
             addNoteState.observe { event ->
                 if (event.getContentIfNotHandled() == true) {
-                    parentFragmentManager.setFragmentResult("update", Bundle())
+                    parentFragmentManager.setFragmentResult(DashboardFragment.FRG_KEY_UPDATE_MONEY_NOTE, Bundle())
                     Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show()
                 }
             }

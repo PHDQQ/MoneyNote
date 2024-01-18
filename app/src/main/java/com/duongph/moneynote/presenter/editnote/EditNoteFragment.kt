@@ -1,6 +1,7 @@
 package com.duongph.moneynote.presenter.editnote
 
 import android.app.DatePickerDialog
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.duongph.moneynote.domain.model.DateTimeObject
@@ -9,6 +10,7 @@ import com.duongph.moneynote.getMoneyClearText
 import com.duongph.moneynote.presenter.adapter.CategoryAdapter
 import com.duongph.moneynote.presenter.base.BaseFragment
 import com.duongph.moneynote.presenter.base.BaseViewModel
+import com.duongph.moneynote.presenter.dashboard.DashboardFragment
 import com.example.mynotehilt.databinding.FragmentEditNoteBinding
 import java.util.*
 
@@ -36,6 +38,7 @@ class EditNoteFragment : BaseFragment<FragmentEditNoteBinding>() {
             }
             editNoteLiveData.observe { isSuccess ->
                 if (isSuccess) {
+                    parentFragmentManager.setFragmentResult(DashboardFragment.FRG_KEY_UPDATE_MONEY_NOTE, Bundle())
                     showToast("Sửa thành công")
                     findNavController().popBackStack()
                 }

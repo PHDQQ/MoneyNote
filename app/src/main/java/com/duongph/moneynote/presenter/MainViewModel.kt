@@ -13,12 +13,12 @@ class MainViewModel : BaseViewModel() {
     private val syncDataAction = SyncDataAction()
 
     init {
-        viewModelScope.launch(Dispatchers.Main) {
-            showLoading()
-            syncDataAction.invoke(BaseAction.VoidRequest()).collect {
-                hideLoading()
-                Log.d("duongph", "syncDataAction: done")
-            }
-        }
+//        viewModelScope.launch(Dispatchers.Main) {
+//            showLoading()
+//            syncDataAction.invoke(BaseAction.VoidRequest()).collect {
+//                hideLoading()
+//                Log.d("duongph", "syncDataAction: done")
+//            }
+//        }
     }
 }

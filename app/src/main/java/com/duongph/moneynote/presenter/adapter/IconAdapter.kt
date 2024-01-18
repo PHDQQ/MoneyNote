@@ -3,6 +3,7 @@ package com.duongph.moneynote.presenter.adapter
 import android.graphics.Color
 import android.view.View
 import com.duongph.moneynote.common.Const
+import com.duongph.moneynote.domain.model.IconModel
 import com.duongph.moneynote.presenter.base.adapter.BaseRcvVH
 import com.duongph.moneynote.setBackgroundCompat
 import com.example.mynotehilt.R
@@ -28,7 +29,7 @@ class IconAdapter : BaseRcvAdapter() {
         mDataSet.clear()
         mDataSetAllTemp.clear()
         newItems!!.map {
-            mDataSet.add(IconData(it as Int).apply {
+            mDataSet.add(IconData(it as IconModel).apply {
                 isSelected = mDataSet.size == 0
             })
         }
@@ -37,7 +38,7 @@ class IconAdapter : BaseRcvAdapter() {
 
 
     fun getItemSelected(): String {
-        return (mDataSet[getPositionSelected()] as IconData).realData.toString()
+        return (mDataSet[getPositionSelected()] as IconData).realData!!.resourceName
     }
 
     inner class IconViewHolder(itemView: View) : BaseRcvVH<IconData>(itemView) {
@@ -53,7 +54,7 @@ class IconAdapter : BaseRcvAdapter() {
         }
 
         override fun onBind(data: IconData) {
-            binding.ivIcon.setImageResource(data.realData!!)
+            binding.ivIcon.setImageResource(data.realData!!.resourceID)
             if (data.isSelected) {
                 binding.ivIcon.setColorFilter(Color.parseColor(colorSelected))
                 binding.llItemIcon.setBackgroundCompat(R.drawable.bg_text_un_selected)
@@ -64,5 +65,5 @@ class IconAdapter : BaseRcvAdapter() {
         }
     }
 
-    inner class IconData(data: Int) : BaseVHData<Int>(data)
+    inner class IconData(data: IconModel) : BaseVHData<IconModel>(data)
 }

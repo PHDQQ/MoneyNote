@@ -3,6 +3,7 @@ package com.duongph.moneynote.common
 import android.content.Context
 import android.content.res.Resources
 import com.duongph.moneynote.MainApplication
+import com.duongph.moneynote.domain.model.IconModel
 
 
 class Const {
@@ -74,10 +75,13 @@ class Const {
             "#F98BBE"
         )
 
-        fun getCategoryImages(): List<Int> {
-            val arrayList = ArrayList<Int>()
+        fun getCategoryImages(): List<IconModel> {
+            val arrayList = ArrayList<IconModel>()
             for (i in 0..140) {
-                arrayList.add(getResourceId(i))
+                arrayList.add(IconModel().apply {
+                    resourceID = getResourceId(i)
+                    resourceName = "category" + String.format("%03d", Integer.valueOf(i))
+                })
             }
             return arrayList
         }

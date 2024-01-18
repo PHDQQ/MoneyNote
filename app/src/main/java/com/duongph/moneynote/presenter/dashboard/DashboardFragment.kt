@@ -21,6 +21,9 @@ import com.example.mynotehilt.R
 import com.example.mynotehilt.databinding.FragmentDashboardBinding
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
+    companion object {
+        const val FRG_KEY_UPDATE_MONEY_NOTE = "FRG_KEY_UPDATE_MONEY_NOTE"
+    }
     private val viewModel: DashboardViewModel by viewModels()
 //
     private val adapter = GroupAdapter()
@@ -44,15 +47,11 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
             }
         }
 
-        parentFragmentManager.setFragmentResultListener("update", this
+        parentFragmentManager.setFragmentResultListener(FRG_KEY_UPDATE_MONEY_NOTE, this
         ) { requestKey, result ->
-            viewModel.updateData()
             Log.d("duongph", "update: done ")
+            viewModel.updateData()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun initView() {

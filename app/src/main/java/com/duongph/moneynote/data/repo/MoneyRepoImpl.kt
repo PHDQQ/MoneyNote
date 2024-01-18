@@ -32,6 +32,7 @@ class MoneyRepoImpl(
     }
 
     override suspend fun updateMoneyNote(note: MoneyNote): Boolean {
+        moneyLocalRepo.updateMoneyNote(note)
         return moneyRemoteRepo.updateMoneyNote(note)
     }
 

@@ -8,5 +8,5 @@ class CategoryResponse(
     var color: String? = null,
     var resourceName: String? = null,
     var typeMoney: Int? = null,
-    var isMoneyOut: Boolean = false
+    var isMoneyOut: Boolean = false,
 )

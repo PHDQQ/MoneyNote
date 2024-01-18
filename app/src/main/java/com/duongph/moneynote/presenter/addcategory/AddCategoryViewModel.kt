@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.duongph.moneynote.common.Const
 import com.duongph.moneynote.domain.action.category.AddCategoryAction
 import com.duongph.moneynote.domain.model.Category
+import com.duongph.moneynote.domain.model.IconModel
 import com.duongph.moneynote.presenter.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -17,7 +18,7 @@ class AddCategoryViewModel : BaseViewModel() {
     var addCategoryMutableLiveData: LiveData<Boolean> = _addCategoryMutableLiveData
 
 
-    fun getListIcon(): List<Int> {
+    fun getListIcon(): List<IconModel> {
         return Const.getCategoryImages()
     }
 

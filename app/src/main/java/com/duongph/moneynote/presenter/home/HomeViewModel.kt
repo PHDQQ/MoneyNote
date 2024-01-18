@@ -4,9 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.duongph.moneynote.action.BaseAction
 import com.duongph.moneynote.common.Event
 import com.duongph.moneynote.domain.action.category.GetCategoryAction
+import com.duongph.moneynote.domain.action.category.GetCategoryWithNoteAction
 import com.duongph.moneynote.domain.action.note.AddNoteAction
+import com.duongph.moneynote.domain.action.sync.SyncDataAction
 import com.duongph.moneynote.domain.model.Category
 import com.duongph.moneynote.domain.model.MoneyNote
 import com.duongph.moneynote.domain.model.TYPE_MONEY
@@ -22,6 +25,7 @@ import java.util.*
 class HomeViewModel : BaseViewModel() {
     private val categoryAction = GetCategoryAction()
     private val addNoteUseCase = AddNoteAction()
+    private val syncDataAction = SyncDataAction()
 
     private val _dateLiveData = MutableLiveData<String>().apply {
         value = ""
@@ -43,7 +47,13 @@ class HomeViewModel : BaseViewModel() {
 
     init {
         _dateLiveData.postValue("${calendar.time.getToDay()} (${calendar.getNameDayOfWeek()})")
-//        getCategory()
+        viewModelScope.launch(Dispatchers.Main) {
+            showLoading()
+            syncDataAction.invoke(BaseAction.VoidRequest()).collect {
+                hideLoading()
+                getCategory()
+            }
+        }
     }
 
     fun getAllNote() {
